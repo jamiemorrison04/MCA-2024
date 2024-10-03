@@ -8,7 +8,7 @@
 
 ### \[How does my selected theme display some of these challenges?\]
 
-\[I love listening to Maynard Ferguson and drumming along to some of my favourite tunes of his but sheet music for his charts is very hard to come by and even when I can find it, it is usually a paywall that is quite significant in size. So I have to choose either to continue drumming along without sheet music or pay up to be able to read the music. It is a tricky dilemma as I can play to a decent level without the sheet music, but I feel conflicted as I love reading the music and understanding everything that is written.]\
+\[I love listening to Maynard Ferguson and drumming along to some of my favourite tunes of his but sheet music for his charts is very hard to come by and even when I can find it, it is usually a paywall that is quite significant in size. So I have to choose either to continue drumming along without sheet music or pay up to be able to read the music. It is a tricky dilemma as I can play to a decent level without the sheet music, but I feel conflicted as I love reading the music and understanding everything that is written.\]
 
 ### \[The current manifestations of data relating to my selected theme, how it is presently curated (collected and gathered) and how it is presented, described, and analysed.\]
 
@@ -25,3 +25,4 @@
 
 ### \[The Task:\]
 
+\[The OMR engine that is used is a useful piece of technology but it certainly has its downfalls. It can capture the general shapes, rhythms, and pitches of music quite well but can easily miss out on detailing. After converting my PDF into MuseScore, some rhythms and some pitches were correct but a lot of correcting was needed. All detailing was missed out (i.e. articulation, tempo markings, dynamics, etc).\]
