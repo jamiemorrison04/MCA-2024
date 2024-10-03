@@ -18,3 +18,10 @@
 \[Where the performance took place or at what event]\
 \[Performers]\
 \[Lots of my listening is done on Spotify but as with a lot of older Jazz artists with potentiallyt hundreds upon thousands of live performances, Spotify is not always the most reliable for perfect chronology.]\
+
+## \[Week 2]\
+
+\[To preface: The task this week frustrated me as I felt it was incredibly inaccessible and I wouldn't have thought that we would be doing a task that is almost impossible to complete without paying or signing up to a website or subscription to be able to view sheet music. As a music and jazz student I know the difficulties of accessing sheet music, with mostly all of it behind some sort of paywall, so I found this mildly frustrating as I surfed the internet for what felt like an eternity just trying to find a piece of sheet music that would even work in MuseScore's concersion software.]\
+
+### \[The Task:]\
+
