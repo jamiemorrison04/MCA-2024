@@ -15,6 +15,15 @@
             max-width: 100%;
             height: auto;
         }
+        #controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -27,34 +36,79 @@
         <p>[Interchangability:]</p>
         <p>[Both MusicXML and MEI have great interoperability. MusicXML file formats can be opened in text-writing software along with any music notation software too.]</p>
     <div id="app">Verovio is loading...</div>
+    <div id="controls">
+        <button id="playBtn">Play</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="stopBtn">Stop</button>
+    </div>
 <script src="https://www.verovio.org/javascript/latest/verovio-toolkit.js"></script>
     <script>
         // Initialize Verovio toolkit
         const verovioToolkit = new verovio.toolkit();
 
-        // Options for rendering MEI
         const options = {
-            pageWidth: 2000, // Width of the SVG page
-            pageHeight: 2500, // Height of the SVG page
-            scale: 40, // Adjust the size as needed (100 = 100%)
-            adjustPageHeight: true // Let the height adjust automatically
+            pageWidth: 2000,
+            pageHeight: 2500,
+            scale: 40,
+            adjustPageHeight: true
         };
 
-        // Load and render the MEI file
+        // Initialize playback controls
+        let audioContext = null;
+        let audioBufferSource = null;
+        let isPlaying = false;
+
+        // Fetch and render MEI file
         fetch('data/MacArthurPark.mei')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load MEI file');
-                }
+                if (!response.ok) throw new Error('Failed to load MEI file');
                 return response.text();
             })
             .then(meiData => {
-                verovioToolkit.setOptions(options); // Set Verovio options
-                verovioToolkit.loadData(meiData); // Load the MEI data
-                const svg = verovioToolkit.renderToSVG(1); // Render to SVG
-                document.getElementById('app').innerHTML = svg; // Display SVG
+                verovioToolkit.setOptions(options);
+                verovioToolkit.loadData(meiData);
+                const svg = verovioToolkit.renderToSVG(1);
+                document.getElementById('app').innerHTML = svg;
             })
             .catch(error => console.error('Error loading MEI file:', error));
+
+        // Playback Functions
+        function playAudio() {
+            if (isPlaying) return;
+            if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            const midiData = verovioToolkit.renderToMIDI();
+            audioContext.decodeAudioData(midiData.buffer, buffer => {
+                audioBufferSource = audioContext.createBufferSource();
+                audioBufferSource.buffer = buffer;
+                audioBufferSource.connect(audioContext.destination);
+                audioBufferSource.start(0);
+                isPlaying = true;
+
+                // Stop playing when the buffer ends
+                audioBufferSource.onended = () => { isPlaying = false; };
+            });
+        }
+
+        function pauseAudio() {
+            if (audioContext && isPlaying) {
+                audioContext.suspend();
+                isPlaying = false;
+            }
+        }
+
+        function stopAudio() {
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+                isPlaying = false;
+            }
+        }
+
+        // Button Event Listeners
+        document.getElementById('playBtn').addEventListener('click', playAudio);
+        document.getElementById('pauseBtn').addEventListener('click', pauseAudio);
+        document.getElementById('stopBtn').addEventListener('click', stopAudio);
     </script>
     </div>
 </body>
