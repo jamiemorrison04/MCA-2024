@@ -7,13 +7,12 @@
   <script src="js/CETEI.js"></script>
   <style>
     #app {
-      border: 1px solid lightgray;
-      min-height: 800px;
+      max-width: 90%;
+      max-height: 90vh;
       overflow-x: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
+      border: 1px solid lightgray;
+      padding: 10px;
+      box-sizing: border-box;
     }
   </style>
 </head>
@@ -29,8 +28,10 @@
     const app = new Verovio.App(document.getElementById("app"), {
       defaultView: "responsive",
       defaultZoom: 3,
-      scale: 80,
-      enableResponsive: true
+      scale: 75,
+      enableResponsive: true,
+      pageWidth: 2000,
+      pageHeight: 5000
     });
 
     // Fetch and load MEI data for score display
