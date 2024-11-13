@@ -4,26 +4,22 @@
     <meta charset="utf-8">
     <title>My Piece in Verovio</title>
     <style>
-        #app {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        svg {
-            max-width: 100%;
-            height: auto;
-        }
-        #controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-        }
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    .box {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+    }
+    .box .header {
+       flex: 0 1 auto;
+    }
+    .box #app {
+        flex: 1 1 auto;
+    }
     </style>
 </head>
 <body>
@@ -36,79 +32,30 @@
         <p>[Interchangability:]</p>
         <p>[Both MusicXML and MEI have great interoperability. MusicXML file formats can be opened in text-writing software along with any music notation software too.]</p>
     <div id="app">Verovio is loading...</div>
-    <div id="controls">
-        <button id="playBtn">Play</button>
-        <button id="pauseBtn">Pause</button>
-        <button id="stopBtn">Stop</button>
-    </div>
-<script src="https://www.verovio.org/javascript/latest/verovio-toolkit.js"></script>
-    <script>
-        // Initialize Verovio toolkit
-        const verovioToolkit = new verovio.toolkit();
-
+    <script type="module">
+        import 'https://www.verovio.org/javascript/app/verovio-app.js';
+        
         const options = {
-            pageWidth: 2000,
-            pageHeight: 2500,
-            scale: 40,
-            adjustPageHeight: true
-        };
-
-        // Initialize playback controls
-        let audioContext = null;
-        let audioBufferSource = null;
-        let isPlaying = false;
-
-        // Fetch and render MEI file
-        fetch('data/MacArthurPark.mei')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to load MEI file');
+            defaultView: 'responsive', // default is 'responsive', alternative is 'document'
+            defaultZoom: 3, // 0-7, default is 4
+            enableResponsive: true, // default is true
+            enableDocument: true // default is true
+        }
+        
+        // A MusicXML file
+        var file = 'data/MacArthurPark.mei';
+        // A MEI file
+        //var file = 'https://www.verovio.org/editor/brahms.mei';
+        
+        const app = new Verovio.App(document.getElementById("app"), options);
+        fetch(file)
+            .then(function(response) {
                 return response.text();
             })
-            .then(meiData => {
-                verovioToolkit.setOptions(options);
-                verovioToolkit.loadData(meiData);
-                const svg = verovioToolkit.renderToSVG(1);
-                document.getElementById('app').innerHTML = svg;
-            })
-            .catch(error => console.error('Error loading MEI file:', error));
-
-        // Playback Functions
-        function playAudio() {
-            if (isPlaying) return;
-            if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-            const midiData = verovioToolkit.renderToMIDI();
-            audioContext.decodeAudioData(midiData.buffer, buffer => {
-                audioBufferSource = audioContext.createBufferSource();
-                audioBufferSource.buffer = buffer;
-                audioBufferSource.connect(audioContext.destination);
-                audioBufferSource.start(0);
-                isPlaying = true;
-
-                // Stop playing when the buffer ends
-                audioBufferSource.onended = () => { isPlaying = false; };
+            .then(function(text) {
+                app.loadData(text, { format: 'mei' });
             });
-        }
 
-        function pauseAudio() {
-            if (audioContext && isPlaying) {
-                audioContext.suspend();
-                isPlaying = false;
-            }
-        }
-
-        function stopAudio() {
-            if (audioContext) {
-                audioContext.close();
-                audioContext = null;
-                isPlaying = false;
-            }
-        }
-
-        // Button Event Listeners
-        document.getElementById('playBtn').addEventListener('click', playAudio);
-        document.getElementById('pauseBtn').addEventListener('click', pauseAudio);
-        document.getElementById('stopBtn').addEventListener('click', stopAudio);
     </script>
     </div>
 </body>
