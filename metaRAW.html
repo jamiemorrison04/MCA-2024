@@ -9,6 +9,7 @@
     #app {
       border: 1px solid lightgray;
       min-height: 800px;
+      overflow-x: auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -28,6 +29,7 @@
     const app = new Verovio.App(document.getElementById("app"), {
       defaultView: "responsive",
       defaultZoom: 3,
+      scale: 80,
       enableResponsive: true
     });
 
