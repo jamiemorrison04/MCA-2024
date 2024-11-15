@@ -47,7 +47,7 @@
   <script>
     // Get, parse, and show TEI data
     var CETEIcean = new CETEI()
-    CETEIcean.getHTML5("MacArthurPark_2.mei", function(data) {
+    CETEIcean.getHTML5("data/MacArthurPark_2.mei", function(data) {
       document.getElementById("TEI").appendChild(data)
     })
      // Use CETEIcean to fetch and display metadata
@@ -70,7 +70,7 @@
 
   <script>
       var xhr = new XMLHttpRequest()
-      xhr.open('GET', 'MacArthurPark_2.mei') //  change this to the right file
+      xhr.open('GET', 'data/MacArthurPark_2.mei') //  change this to the right file
       xhr.send(null)
       /* Deal with the response */
       xhr.onreadystatechange = function () {
