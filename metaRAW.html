@@ -67,6 +67,27 @@
       }
     });
   </script>
+
+  <script>
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', 'MacArthurPark_2.mei') //  change this to the right file
+      xhr.send(null)
+      /* Deal with the response */
+      xhr.onreadystatechange = function () {
+        var DONE = 4
+        var OK = 200
+        if (xhr.readyState === DONE) {
+          if (xhr.status === OK) {
+            var parser = new DOMParser()
+            var meiDoc = parser.parseFromString(xhr.responseText,"text/xml")
+            document.querySelector("#meta").innerHTML += "<h1>" + meiDoc.querySelector("[*|id='title12345']").textContent + "</h1>" 
+            document.querySelector("#meta").innerHTML += "<p><strong>Composer:</strong> <a href=\"" + meiDoc.querySelector("[*|id='pers12345']").getAttribute('authURI') + "\">" + meiDoc.querySelector("[*|id='pers12345']").textContent + "</a></p>"
+            
+          }
+        }
+      }
+    </script>
+  
 </body>
 <footer><p>Score rendering provided by <a href="http://www.verovio.org">Verovio</a>. Metadata rendered by <a href="https://github.com/TEIC/CETEIcean/"> CETEIcean</a>.</p></footer>
 </html>
