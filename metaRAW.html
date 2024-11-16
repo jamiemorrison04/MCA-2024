@@ -88,6 +88,8 @@
         const composerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/59269449";
         const writer = meiHead.querySelector("persName")?.textContent || "Jimmy Webb";
         const writerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/33636158";
+        const arranger = meiHead.querySelector("persName")?.textContent || "Adrian Drover";
+        const arrangerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/304969586";
 
         const workTitle = document.createElement("h1");
         workTitle.textContent = title;
@@ -98,9 +100,14 @@
         const writerInfo = document.createElement("p");
         writerInfo.innerHTML = `<strong>Writer:</strong> <a href="${writerURI}">${writer}</a>`;
 
+        const arrangerInfo = document.createElement("p");
+        writerInfo.innerHTML = `<strong>Arranger:</strong> <a href="${arrangerURI}">${arranger}</a>`;
+
         metadataContainer.appendChild(workTitle);
         metadataContainer.appendChild(composerInfo);
         metadataContainer.appendChild(writerInfo);
+        metadataContainer.appendChild(arrangerInfo);
+        
       } else {
         metadataContainer.innerText = "No metadata found in MEI file.";
       }
