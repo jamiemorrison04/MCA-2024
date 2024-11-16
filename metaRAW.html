@@ -91,8 +91,8 @@
         const arranger = meiHead.querySelector("persName")?.textContent || "Adrian Drover";
         const arrangerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/304969586";
         const encoder = meiHead.querySelector("persName")?.textContent || "Jamie Morrison";
-        const publisher = meiHead.querySelector("persName")?.textContent || "Sony MBG Music Entertainment";
-        const publisherURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/148113165";
+        const publisher = meiHead.querySelector("corpName")?.textContent || "Sony MBG Music Entertainment";
+        const publisherURI = meiHead.querySelector("corpName")?.getAttribute("authURI") || "http://viaf.org/viaf/148113165";
 
         const workTitle = document.createElement("h1");
         workTitle.textContent = title;
