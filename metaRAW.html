@@ -68,29 +68,6 @@
         document.getElementById("app").innerText = "Failed to load score.";
       });
     </script>
-  <script>
-    // Get, parse, and show TEI data
-    var CETEIcean = new CETEI()
-    CETEIcean.getHTML5("data/MacArthurPark_2.mei", function(data) {
-      document.getElementById("TEI").appendChild(data)
-    })
-     // Use CETEIcean to fetch and display metadata
-    const CETEI4MEI = new CETEI();
-    CETEI4MEI.addBehaviors({
-      namespaces: { mei: "http://www.music-encoding.org/ns/mei" }
-    });
-
-    CETEI4MEI.getHTML5("data/MacArthurPark_2.mei", data => {
-      // Extract metadata from <meiHead>
-      const meiHead = data.querySelector('mei-meiHead');
-      if (meiHead) {
-        document.getElementById("MEImeta").innerHTML = "";
-        document.getElementById("MEImeta").appendChild(meiHead);
-      } else {
-        document.getElementById("MEImeta").innerText = "No metadata found in MEI file.";
-      }
-    });
-  </script>
   
 <script>
     // Use CETEIcean to fetch and display metadata
