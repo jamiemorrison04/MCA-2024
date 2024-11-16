@@ -90,6 +90,7 @@
         const writerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/33636158";
         const arranger = meiHead.querySelector("persName")?.textContent || "Adrian Drover";
         const arrangerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/304969586";
+        const encoder = meiHead.querySelector("persName")?.textContent || "Jamie Morrison";
 
         const workTitle = document.createElement("h1");
         workTitle.textContent = title;
@@ -101,12 +102,16 @@
         writerInfo.innerHTML = `<strong>Writer:</strong> <a href="${writerURI}">${writer}</a>`;
 
         const arrangerInfo = document.createElement("p");
-        writerInfo.innerHTML = `<strong>Arranger:</strong> <a href="${arrangerURI}">${arranger}</a>`;
+        arrangerInfo.innerHTML = `<strong>Arranger:</strong> <a href="${arrangerURI}">${arranger}</a>`;
+
+        const encoderInfo = document.createElement("p");
+        encoderInfo.innerHTML = `<strong>Encoded by</strong> ${encoder}`;
 
         metadataContainer.appendChild(workTitle);
         metadataContainer.appendChild(composerInfo);
         metadataContainer.appendChild(writerInfo);
         metadataContainer.appendChild(arrangerInfo);
+        metadataContainer.appendChild(encoderInfo);
         
       } else {
         metadataContainer.innerText = "No metadata found in MEI file.";
