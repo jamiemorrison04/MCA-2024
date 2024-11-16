@@ -83,8 +83,8 @@
       const meiHead = data.querySelector('mei-meiHead');
       if (meiHead) {
         // Extract and format metadata
-        const title = meiHead.querySelector("titleStmt title")?.textContent || "Untitled";
-        const composer = meiHead.querySelector("persName")?.textContent || "Unknown Composer";
+        const title = meiHead.querySelector("titleStmt title")?.textContent || "MacArthur Park";
+        const composer = meiHead.querySelector("persName")?.textContent || "Jimmy Webb";
         const composerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "#";
 
         const workTitle = document.createElement("h1");
