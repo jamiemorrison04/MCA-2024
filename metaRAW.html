@@ -84,8 +84,8 @@
       if (meiHead) {
         // Extract and format metadata
         const title = meiHead.querySelector("titleStmt title")?.textContent || "MacArthur Park";
-        const composer = meiHead.querySelector("persName")?.textContent || "Jimmy Webb";
-        const composerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "#";
+        const composer = meiHead.querySelector("persName")?.textContent || "Maynard Ferguson";
+        const composerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/59269449";
 
         const workTitle = document.createElement("h1");
         workTitle.textContent = title;
