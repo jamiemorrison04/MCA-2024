@@ -14,6 +14,30 @@
       padding: 10px;
       box-sizing: border-box;
     }
+     #MEImeta {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+  }
+
+  #MEImeta h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  #MEImeta p {
+    margin: 5px 0;
+  }
+
+  #MEImeta a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  #MEImeta a:hover {
+    text-decoration: underline;
   </style>
 </head>
 <body>
@@ -67,26 +91,38 @@
       }
     });
   </script>
+  
+<script>
+    // Use CETEIcean to fetch and display metadata
+    const CETEI4MEI = new CETEI();
+    CETEI4MEI.addBehaviors({
+      namespaces: { mei: "http://www.music-encoding.org/ns/mei" }
+    });
 
-  <script>
-      var xhr = new XMLHttpRequest()
-      xhr.open('GET', 'data/MacArthurPark_2.mei') //  change this to the right file
-      xhr.send(null)
-      /* Deal with the response */
-      xhr.onreadystatechange = function () {
-        var DONE = 4
-        var OK = 200
-        if (xhr.readyState === DONE) {
-          if (xhr.status === OK) {
-            var parser = new DOMParser()
-            var meiDoc = parser.parseFromString(xhr.responseText,"text/xml")
-            document.querySelector("#meta").innerHTML += "<h1>" + meiDoc.querySelector("[*|id='title12345']").textContent + "</h1>" 
-            document.querySelector("#meta").innerHTML += "<p><strong>Composer:</strong> <a href=\"" + meiDoc.querySelector("[*|id='pers12345']").getAttribute('authURI') + "\">" + meiDoc.querySelector("[*|id='pers12345']").textContent + "</a></p>"
-            
-          }
-        }
+    CETEI4MEI.getHTML5("data/MacArthurPark_2.mei", data => {
+      const metadataContainer = document.getElementById("MEImeta");
+      metadataContainer.innerHTML = ""; // Clear loading text
+
+      const meiHead = data.querySelector('mei-meiHead');
+      if (meiHead) {
+        // Extract and format metadata
+        const title = meiHead.querySelector("titleStmt title")?.textContent || "Untitled";
+        const composer = meiHead.querySelector("persName")?.textContent || "Unknown Composer";
+        const composerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "#";
+
+        const workTitle = document.createElement("h1");
+        workTitle.textContent = title;
+
+        const composerInfo = document.createElement("p");
+        composerInfo.innerHTML = `<strong>Composer:</strong> <a href="${composerURI}">${composer}</a>`;
+
+        metadataContainer.appendChild(workTitle);
+        metadataContainer.appendChild(composerInfo);
+      } else {
+        metadataContainer.innerText = "No metadata found in MEI file.";
       }
-    </script>
+    });
+  </script>
   
 </body>
 <footer><p>Score rendering provided by <a href="http://www.verovio.org">Verovio</a>. Metadata rendered by <a href="https://github.com/TEIC/CETEIcean/"> CETEIcean</a>.</p></footer>
