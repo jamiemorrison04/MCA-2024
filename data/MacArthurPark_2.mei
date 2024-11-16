@@ -10,7 +10,7 @@
                <persName role="artist" startdate="1928" enddate="2006" auth="VIAF" auth.uri="http://viaf.org/viaf/59269449">Maynard Ferguson</persName>
             </composer>
             <lyricist>
-            	<persName role="writer" startdate="1946" auth="VIAF" auth.uri="">Jimmy Webb</persName>
+            	<persName role="writer" startdate="1946" auth="VIAF" auth.uri="http://viaf.org/viaf/33636158">Jimmy Webb</persName>
             </lyricist>
             <arranger>
             	<persName role="arranger" auth="VIAF" auth.uri="http://viaf.org/viaf/304969586">Adrian Drover</persName>
