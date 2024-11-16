@@ -91,6 +91,8 @@
         const arranger = meiHead.querySelector("persName")?.textContent || "Adrian Drover";
         const arrangerURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/304969586";
         const encoder = meiHead.querySelector("persName")?.textContent || "Jamie Morrison";
+        const publisher = meiHead.querySelector("persName")?.textContent || "Sony MBG Music Entertainment";
+        const publisherURI = meiHead.querySelector("persName")?.getAttribute("authURI") || "http://viaf.org/viaf/148113165";
 
         const workTitle = document.createElement("h1");
         workTitle.textContent = title;
@@ -104,13 +106,18 @@
         const arrangerInfo = document.createElement("p");
         arrangerInfo.innerHTML = `<strong>Arranger:</strong> <a href="${arrangerURI}">${arranger}</a>`;
 
+        const publisherInfo = document.createElement("p");
+        publisherInfo.innerHTML = `<strong>Publisher:</strong> <a href="${publisherURI}">${publisher}</a>`;
+        
         const encoderInfo = document.createElement("p");
         encoderInfo.innerHTML = `<strong>Encoded by</strong> ${encoder}`;
+
 
         metadataContainer.appendChild(workTitle);
         metadataContainer.appendChild(composerInfo);
         metadataContainer.appendChild(writerInfo);
         metadataContainer.appendChild(arrangerInfo);
+        metadataContainer.appendChild(publisherInfo);
         metadataContainer.appendChild(encoderInfo);
         
       } else {
