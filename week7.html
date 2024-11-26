@@ -1,7 +1,10 @@
 <html>
 <head>
   <title>Week 7 - Updated MEI file with metadata</title>
-
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/myMeta.css" media="all" />
+  <link rel="stylesheet" href="css/style.css" media="all" />
+  <script src="js/CETEI.js"></script>
   <style>
     #app {
       max-width: 90%;
@@ -108,7 +111,7 @@
 .subnav:hover .subnav-content {
   display: block;
 }
-    
+
   </style>
 
 </head>
@@ -133,9 +136,9 @@
       <a href="images.html">Images</a>
       <a href="sources.html">Sources</a>
   </div>
-  
+
   <h1>Week 7</h1>
-  
+
   <div id="MEImeta">Loading metadata...</div>
   <div id="app">Verovio is loading the score...</div>
   <div><p>[Discuss how you would format your metadata here]</p></div>
@@ -163,7 +166,7 @@
         document.getElementById("app").innerText = "Failed to load score.";
       });
     </script>
-  
+
 <script>
     // Use CETEIcean to fetch and display metadata
     const CETEI4MEI = new CETEI();
@@ -208,7 +211,7 @@
 
         const distributorInfo = document.createElement("p");
         distributorInfo.innerHTML = `<strong>Distributor:</strong> <a href="${distributorURI}">${distributor}</a>`;
-        
+
         const encoderInfo = document.createElement("p");
         encoderInfo.innerHTML = `<strong>Encoded by</strong> ${encoder}`;
 
@@ -220,13 +223,13 @@
         metadataContainer.appendChild(publisherInfo);
         metadataContainer.appendChild(distributorInfo);
         metadataContainer.appendChild(encoderInfo);
-        
+
       } else {
         metadataContainer.innerText = "No metadata found in MEI file.";
       }
     });
   </script>
-  
+
 </body>
 <footer><p>Score rendering provided by <a href="http://www.verovio.org">Verovio</a>. Metadata rendered by <a href="https://github.com/TEIC/CETEIcean/"> CETEIcean</a>.</p></footer>
 </html>
