@@ -1,0 +1,28 @@
+<html>
+<body>
+<script type="module">
+      // Import Verovio App module
+    import 'https://www.verovio.org/javascript/app/verovio-app.js';
+
+    // Initialize Verovio with basic settings
+    const app = new Verovio.App(document.getElementById("app"), {
+      defaultView: "responsive",
+      defaultZoom: 3,
+      scale: 125,
+      enableResponsive: true,
+    });
+
+    // Fetch and load MEI data for score display
+    fetch("data/MacArthurPark.mei")
+      .then(response => {
+        if (!response.ok) throw new Error("MEI file not found");
+        return response.text();
+      })
+      .then(text => app.loadData(text, { format: 'mei' }))
+      .catch(error => {
+        console.error("Error loading MEI file:", error);
+        document.getElementById("app").innerText = "Failed to load score.";
+      });
+    </script>
+</body>
+</html>
