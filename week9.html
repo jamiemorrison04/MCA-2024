@@ -12,6 +12,7 @@
     .img2 {
       height:300px
       width:300px
+      
     }
     
     /* Add a black background color to the top navigation */
@@ -86,6 +87,20 @@
 .subnav:hover .subnav-content {
   display: block;
 }
+
+    /* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
     
   </style>
 
@@ -123,7 +138,17 @@
   <h2>Shimmy She Wobble > Station Blues Panes</h2>
   <img class="img1" src="images/NMA_panes.png" alt="Shimmy She Wobble > Station Blues Panes">
 
-  <img class="img2" src="images/my_analysis_FFTB.png" alt="Histogram Output for Frame for the Blues">
+  <div class="row">
+    <div class="column">
+      <img src="images/my_analysis_FFTB.png" alt="Histogram Output for Frame for the Blues" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="images/my_analysis_ATR.png" alt="Histogram Output for After the Race" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="images/my_analysis_NMA.png" alt="Histogram Output for Shimmy She Wobble > Station Blues" style="width:100%">
+    </div>
+  </div>
 
   
 </body>
